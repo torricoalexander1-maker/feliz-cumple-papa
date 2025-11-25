@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Papá!</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Audio de fondo -->
+    <audio id="birthdayMusic" autoplay loop muted>
+        <source src="./music/viejo.mp3" type="audio/mpeg">
+        <source src="./music/happy-birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Confeti -->
+    <div class="confetti-container"></div>
+
+    <!-- Página principal -->
+    <div class="main-container">
+        <!-- Encabezado con animación -->
+        <div class="header-section">
+            <h1 class="title animate-title">¡FELIZ CUMPLEAÑOS!</h1>
+            <p class="subtitle animate-subtitle">Papá querido</p>
+        </div>
+
+        <!-- Galería de fotos con efecto 3D -->
+        <div class="photos-gallery">
+            <div class="photo-stack">
+                <div class="photo-card photo-1 animate-photo-1">
+                    <img src="./img/foto1.jpg" alt="Momento especial">
+                    <div class="photo-label">Momentos juntos</div>
+                </div>
+                <div class="photo-card photo-2 animate-photo-2">
+                    <img src="./img/familiatorricoestrada.jpg" alt="Familia">
+                    <div class="photo-label">Familia Torrico Estrada</div>
+                </div>
+                <div class="photo-card photo-3 animate-photo-3">
+                    <img src="./img/foto2.jpg" alt="Celebración">
+                    <div class="photo-label">Celebrando juntos</div>
+                </div>
+                <div class="photo-card photo-4 animate-photo-4">
+                    <img src="./img/foto5.jpg" alt="Amor familiar">
+                    <div class="photo-label">Lleno de amor</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje especial -->
+        <div class="message-section">
+            <div class="message-card animate-message">
+                <div class="message-header">
+                    <span class="emoji">🎂</span>
+                </div>
+                <h2>Un mensaje especial para ti</h2>
+                <p class="main-message">
+                    En este día tan especial, queremos celebrar a alguien extraordinario. 
+                    Papá, eres el pilar de nuestra familia, tu amor, dedicación 
+                    y sabiduría nos han guiado por el camino correcto.
+                </p>
+                <p class="main-message">
+                    En tu cumpleaños, queremos que brille tu corazón con la alegría de saber 
+                    cuánto te amamos y valoramos. Cada momento a tu lado es un regalo 
+                    que atesoramos en nuestros corazones.
+                </p>
+                <p class="main-message highlight">
+                    "Que este año traiga contigo salud, felicidad, y muchos momentos 
+                    más para compartir en familia. ¡Te queremos infinitamente!"
+                </p>
+                <div class="emoji-celebration">
+                    <span class="emoji">🎉</span>
+                    <span class="emoji">🎁</span>
+                    <span class="emoji">🎈</span>
+                    <span class="emoji">🎊</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contador de felicidad -->
+        <div class="happiness-counter">
+            <div class="counter-item animate-count">
+                <div class="counter-number">365</div>
+                <div class="counter-label">Para seguir siendo el mejor Papá</div>
+            </div>
+            <div class="counter-item animate-count-delay">
+                <div class="counter-number">∞</div>
+                <div class="counter-label">Años de amor</div>
+            </div>
+            <div class="counter-item animate-count-delay-2">
+                <div class="counter-number">100%</div>
+                <div class="counter-label">Admiración y respeto</div>
+            </div>
+        </div>
+
+        <!-- Botones interactivos -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="playConfetti()">
+                🎉 ¡Celebrar!
+            </button>
+            <button class="btn btn-secondary" onclick="toggleMusic()">
+                🎵 Música
+            </button>
+        </div>
+
+        <!-- Galería expandida con hover -->
+        <div class="expanded-gallery">
+            <h3>Galería de momentos</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./img/foto1.jpg" alt="Foto 1">
+                    <div class="gallery-overlay">
+                        <p>😎</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./img/familiatorricoestrada.jpg" alt="Foto 2">
+                    <div class="gallery-overlay">
+                        <p>Familia Torrico Estrada</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./img/foto3.jpg" alt="Foto 3">
+                    <div class="gallery-overlay">
+                        <p>🙌</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./img/fto4.jpg" alt="Foto 4">
+                    <div class="gallery-overlay">
+                        <p>👨‍❤️‍👨</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pie de página especial -->
+        <div class="footer-special">
+            <p>Con todo nuestro amor,</p>
+            <p class="family-name">De parte de la familia Torrico Estrada</p>
+            <p class="date">25 de Noviembre de 2025</p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Función para reproducir música automáticamente
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('birthdayMusic');
+            audio.muted = false;
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Autoplay fue prevenido. El usuario debe interactuar primero.');
+                    // Fallback: reproducir al primer click o scroll
+                    document.addEventListener('click', function playOnClick() {
+                        audio.play();
+                        audio.muted = false;
+                        document.removeEventListener('click', playOnClick);
+                    }, { once: true });
+                });
+            }
+        });
+        
+        // Intentar reproducir al hacer scroll también
+        document.addEventListener('scroll', function attemptPlay() {
+            const audio = document.getElementById('birthdayMusic');
+            if (audio.paused) {
+                audio.muted = false;
+                audio.play().catch(() => {});
+                document.removeEventListener('scroll', attemptPlay);
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
